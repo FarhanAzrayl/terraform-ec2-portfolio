@@ -41,26 +41,5 @@ resource "aws_instance" "web" {
     Name = "terraform-portfolio"
   }
 
-# Added below to read HTML file (The resume) #
-
-provisioner "file" {
-    source      = "../website/index.html"
-    destination = "/tmp/index.html"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo mv /tmp/index.html /var/www/html/index.html",
-      "sudo systemctl restart nginx"
-    ]
-  }
-
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
-    host        = self.public_ip
-  }
-
 }
 
