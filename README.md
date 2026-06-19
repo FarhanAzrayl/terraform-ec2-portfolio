@@ -40,56 +40,35 @@ Some examples:
 - GitHub content deployment
 - Nginx configuration
 
+
 Problems Encountered and Resolutions
 
+
 Issue 1: Missing AWS Credentials
+Cause: Terraform could not authenticate with AWS.
+Resolution: Configured AWS credentials locally using AWS configure
 
-Cause:
-Terraform could not authenticate with AWS.
-
-Resolution:
-Configured AWS credentials locally using AWS configure
 
 Issue 2: Insufficient IAM Permissions
-
 Error: UnauthorizedOperation
+Cause: IAM user lacked permissions to create Security Groups.
+Resolution: Updated IAM permissions to allow EC2 instance management, Security Group creation and Related networking actions
 
-Cause:
-IAM user lacked permissions to create Security Groups.
-
-Resolution:
-Updated IAM permissions to allow:
-EC2 instance management
-Security Group creation
-Related networking actions
 
 Issue 3: Invalid Security Group Protocol
-
 Error: Invalid value 'http' for IP protocol
+Cause: Terraform Security Group protocol was incorrectly defined.
+Resolution: Changed a protocol from "http" to protocol = "tcp"
 
-Cause:
-Terraform Security Group protocol was incorrectly defined.
-
-Resolution:
-Changed: protocol = "http" to protocol = "tcp"
 
 Issue 4: Website Displayed Default Nginx Page
-
 Problem: Nginx showed: Welcome to nginx! instead of the portfolio website.
+Cause: The default Nginx page was not removed and the custom page was not successfully deployed.
+Resolution: Updated user-data script and downloaded website files directly from GitHub.
 
-Cause:
-The default Nginx page was not removed and the custom page was not successfully deployed.
-
-Resolution:
-Updated user-data script and downloaded website files directly from GitHub.
-
-Issue 6: Incorrect GitHub Raw URL
-
-Cause:
-Used an incorrect GitHub raw content URL.
-
-Resolution:
-Corrected URL format and verified file accessibility.
+Issue 5: Incorrect GitHub Raw URL
+Cause: Used an incorrect GitHub raw content URL.
+Resolution: Corrected URL format and verified file accessibility.
 
 
 Key Learning Outcomes
@@ -100,6 +79,7 @@ Key Learning Outcomes
 - Integrating GitHub with cloud deployments
 - Troubleshooting cloud infrastructure issues
 - Understanding the relationship between networking, security, and application deployment
+
 
 Future Improvements
 
